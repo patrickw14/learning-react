@@ -6,16 +6,19 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
  */
-
+/* eslint-disable */
 import React, { Component, PropTypes } from 'react';
 import emptyFunction from 'fbjs/lib/emptyFunction';
 import s from './App.scss';
 import Header from '../Header';
 import Feedback from '../Feedback';
 import Footer from '../Footer';
+import Post from '../Post';
+import PostList from '../PostList';
 
 class App extends Component {
 
+  
   static propTypes = {
     context: PropTypes.shape({
       insertCss: PropTypes.func,
@@ -33,6 +36,13 @@ class App extends Component {
     onSetMeta: PropTypes.func.isRequired,
     onPageNotFound: PropTypes.func.isRequired,
   };
+
+  state = {
+    posts: [
+      { id: 0, username: 'Mateo', body: 'Lorem Ipsulum' },
+      { id: 1, username: 'Patrick', body: 'React is fun!' },
+    ],
+  }
 
   getChildContext() {
     const context = this.props.context;
@@ -53,12 +63,15 @@ class App extends Component {
     this.removeCss();
   }
 
+  postList = [...this.state.posts];
+
   render() {
     return !this.props.error ? (
       <div>
         <Header />
         {this.props.children}
         <Feedback />
+        <PostList posts={this.state.posts} />
         <Footer />
       </div>
     ) : this.props.children;
