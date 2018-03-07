@@ -39,8 +39,8 @@ class App extends Component {
 
   state = {
     posts: [
-      { id: 0, username: 'Mateo', body: 'Lorem Ipsulum' },
-      { id: 1, username: 'Patrick', body: 'React is fun!' },
+      { id: 0, username: 'Mateo', body: 'Lorem Ipsulum', upVote: 0, downVote: 0},
+      { id: 1, username: 'Patrick', body: 'React is fun!', upVote: 0, downVote: 0},
     ],
   }
 
