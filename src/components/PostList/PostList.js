@@ -14,10 +14,7 @@ class PostList extends Component{
             return (
                     <div>
                         {this.props.posts.map((post, index) => {
-                            return <Post
-                                    username={post.username}
-                                    body={post.body}
-                                    />
+                            return <Post post={post} />
                         })}
                     </div>
                     );
