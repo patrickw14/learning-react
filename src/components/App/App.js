@@ -37,11 +37,15 @@ class App extends Component {
     onPageNotFound: PropTypes.func.isRequired,
   };
 
-  state = {
-    posts: [
-      { id: 0, username: 'Mateo', body: 'Lorem Ipsulum', upVote: 0, downVote: 0},
-      { id: 1, username: 'Patrick', body: 'React is fun!', upVote: 0, downVote: 0},
-    ],
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      posts: [
+        { id: 0, username: 'Mateo', body: 'Lorem Ipsulum', upVote: 0, downVote: 0},
+        { id: 1, username: 'Patrick', body: 'React is fun!', upVote: 0, downVote: 0},
+      ],
+    }
   }
 
   getChildContext() {
@@ -63,8 +67,6 @@ class App extends Component {
     this.removeCss();
   }
 
-  postList = [...this.state.posts];
-
   render() {
     return !this.props.error ? (
       <div>
@@ -76,7 +78,6 @@ class App extends Component {
       </div>
     ) : this.props.children;
   }
-
 }
 
 export default App;

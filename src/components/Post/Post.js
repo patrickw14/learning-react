@@ -25,6 +25,16 @@ class Post extends Component {
      */
     constructor(props){
         super(props);
+        this.state = {
+            upvoteCount: 0,
+            downvoteCount: 0
+        };
+
+        this.updateCount = this.updateCount.bind(this);
+    }
+
+    componentWillMount() {
+        this.unsubscribe = VotingService.subscribe(this.props.post.id, this.updateCount);
     }
 
     upvotePost() {
@@ -34,6 +44,10 @@ class Post extends Component {
     downvotePost() {
         VotingService.downvote(this.props.post.id);
     }
+
+    updateCount(newState) {
+        this.setState(newState);
+    }
     
     render(){
         return (
@@ -42,9 +56,15 @@ class Post extends Component {
                 <p>{this.props.post.body}</p>
                 <button onClick={() => this.upvotePost()}>Upvote</button>
                 <button onClick={() => this.downvotePost()}>Downvote</button>
+                <p>Upvotes: {this.state.upvoteCount}</p>
+                <p>Downvotes: {this.state.downvoteCount}</p>
             </div>
         );
     };
+
+    componentWillUnmount() {
+        this.unsubscribe();
+    }
 }
 
 export default Post;
