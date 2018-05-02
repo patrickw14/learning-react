@@ -1,6 +1,15 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 
+const Post = ({onUpVote, onDownVote, voteCount, name, body}) => (
+    <div>
+        <h1>{this.props.name}</h1>
+        <p>{this.props.body}</p>
+        <button onClick={onUpVote}>Upvote</button>
+        <button onClick={onDownVote}>Downvote</button>
+        <p>Votes: {voteCount}</p>
+    </div>
+)
 //make a 
 /*
  * Show a song or playlist (entity)
@@ -10,18 +19,9 @@ import React, { Component } from 'react';
  *  - show an upvote/downvote button
  *  - "Listen Now" - an embedded player?
  */
-class Post extends Component {
+/**class Post extends Component {
 
-    /*
-     * @prop Post {
-     *   Type: "Song" | "Playlist"
-     *   Name: String
-     *   Genre(s): String[]
-     *   Artist(s): Artist[] (whoever is first in array is primary artist)
-     *   Recommender: User
-     *   Body: String
-     * }
-     */
+
     constructor(props){
         super(props);
     }
@@ -38,6 +38,6 @@ class Post extends Component {
             </div>
         );
     };
-}
+}**/
 
 export default Post;
