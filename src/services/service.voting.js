@@ -1,10 +1,8 @@
-
 let upvoteState = {};
 let downvoteState = {};
 let eventRegistry = {};
 
 var VotingService = {
-    
     upvote: function(postID) {
         if (!upvoteState[postID])
             upvoteState[postID] = 1;

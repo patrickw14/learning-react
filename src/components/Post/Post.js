@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React, { Component } from 'react';
-import VotingService from '../../services/service.voting';
 
 //make a 
 /*
@@ -25,46 +24,20 @@ class Post extends Component {
      */
     constructor(props){
         super(props);
-        this.state = {
-            upvoteCount: 0,
-            downvoteCount: 0
-        };
-
-        this.updateCount = this.updateCount.bind(this);
-    }
-
-    componentWillMount() {
-        this.unsubscribe = VotingService.subscribe(this.props.post.id, this.updateCount);
-    }
-
-    upvotePost() {
-        VotingService.upvote(this.props.post.id);
-    }
-
-    downvotePost() {
-        VotingService.downvote(this.props.post.id);
-    }
-
-    updateCount(newState) {
-        this.setState(newState);
     }
     
     render(){
         return (
             <div>
-                <h1>{this.props.post.name}</h1>
-                <p>{this.props.post.body}</p>
-                <button onClick={() => this.upvotePost()}>Upvote</button>
-                <button onClick={() => this.downvotePost()}>Downvote</button>
-                <p>Upvotes: {this.state.upvoteCount}</p>
-                <p>Downvotes: {this.state.downvoteCount}</p>
+                <h1>{this.props.name}</h1>
+                <p>{this.props.body}</p>
+                <button onClick={() => this.props.upvotePost(this.props.id)}>Upvote</button>
+                <button onClick={() => this.props.downvotePost(this.props.id)}>Downvote</button>
+                <p>Upvotes: {this.props.upvoteCount}</p>
+                <p>Downvotes: {this.props.downvoteCount}</p>
             </div>
         );
     };
-
-    componentWillUnmount() {
-        this.unsubscribe();
-    }
 }
 
 export default Post;
